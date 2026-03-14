@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/project.iml" filepath="$PROJECT_DIR$/.idea/project.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../PythonClass/Python Weekend/advance/pythonGui/.idea/pythonGui.iml" filepath="$PROJECT_DIR$/../PythonClass/Python Weekend/advance/pythonGui/.idea/pythonGui.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../todaApp_with_artificial_intelligence_feature_in_python_tkinter-main/.idea/todaApp_with_artificial_intelligence_feature_in_python_tkinter-main.iml" filepath="$PROJECT_DIR$/../todaApp_with_artificial_intelligence_feature_in_python_tkinter-main/.idea/todaApp_with_artificial_intelligence_feature_in_python_tkinter-main.iml" />
+    </modules>
+  </component>
+</project>
