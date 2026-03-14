@@ -5,6 +5,7 @@ import webbrowser
 import datetime
 import os
 import subprocess as sd
+import sys  # Recommended for finding python executable
 
 
 def process_input(user_text, source_type):
@@ -61,7 +62,6 @@ def process_input(user_text, source_type):
         text_entry.delete(0, tk.END)
 
 
-
 def handle_voice_search():
     """Handles the microphone input"""
     status_label.config(text="Listening...", fg="red")
@@ -95,8 +95,16 @@ def handle_text_search():
 def log_out():
     """Destroys the main window and re-opens the sign-in page."""
 
+    # CRITICAL FIX: Close the current window first
+    root.destroy()
+
     try:
+        # Using os.system as per your original code
         os.system('python sign_in.py')
+
+        # ALTERNATIVE (More Reliable):
+        # sd.Popen([sys.executable, "sign_in.py"])
+
     except Exception as e:
         print(f"Error opening sign-in page: {e}")
 
@@ -122,7 +130,8 @@ btn_submit = tk.Button(input_frame, text="Search", command=handle_text_search, b
 btn_submit.pack(side=tk.LEFT)
 
 # 3. VOICE INPUT AREA (Bottom)
-btn_voice = tk.Button(root, text="🎤 Use Voice Input", command=handle_voice_search, font=("Arial", 12), fg="#B6D0E2", bg="#301934")
+btn_voice = tk.Button(root, text="🎤 Use Voice Input", command=handle_voice_search, font=("Arial", 12), fg="#B6D0E2",
+                      bg="#301934")
 btn_voice.pack(pady=10)
 
 status_label = tk.Label(root, text="Ready - Type or Speak", font=("Arial", 10))
@@ -130,7 +139,5 @@ status_label.pack()
 
 btn_logout = tk.Button(root, text="Log Out", command=log_out, font=("Arial", 10), bg="red", fg="white")
 btn_logout.pack(pady=5)
-
-
 
 root.mainloop()

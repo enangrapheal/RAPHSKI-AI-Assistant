@@ -2,8 +2,6 @@ from tkinter import *
 import subprocess as sd
 import sys
 import os
-import sqlite3 as sql
-import tkinter.messagebox as message
 
 Signin = Tk()
 Signin.geometry("300x300+300+0")
@@ -12,39 +10,20 @@ Signin.resizable(0, 0)
 
 
 def loading():
-    """Checks credentials against the database before logging in"""
+    """Opens the main app directly without verification"""
 
-    email = ent.get()
-    password = ent1.get()
+    # Hide the Sign In window immediately
+    Signin.withdraw()
 
-    # 2. Basic validation (Ensure fields aren't empty)
-    if email == "" or password == "":
-        message.showerror("Error", "Please enter both Email and Password.")
-        return
-
-    # 3. Connect to the database
     try:
-        conn = sql.connect("users.db")
-        cur = conn.cursor()
+        # Open raphski.py directly
+        sd.Popen([sys.executable, "raphski.py"])
 
-        cur.execute("SELECT * FROM users WHERE email=? AND password=?", (email, password))
-        account = cur.fetchone()
-        if account:
-            # --- LOGIN SUCCESSFUL ---
-            print("Login Successful!")
-
-            Signin.withdraw()
-
-            sd.Popen([sys.executable, "raphski.py"])
-
-            Signin.after(3000, Signin.destroy)
-        else:
-            message.showerror("Login Failed", "Invalid Email or Password.")
-
-        conn.close()
+        # Close the sign in window fully after 3 seconds
+        Signin.after(3000, Signin.destroy)
 
     except Exception as e:
-        message.showerror("Database Error", f"An error occurred: {e}")
+        print(f"Error opening main app: {e}")
 
 
 def open_sign_up():
@@ -54,11 +33,13 @@ def open_sign_up():
         current_dir = os.path.dirname(os.path.abspath(__file__))
         signup_path = os.path.join(current_dir, "sign_up.py")
 
+        # 2. Hide the current window
         Signin.withdraw()
 
         # 3. Open the sign up script using the correct python executable
         sd.Popen([sys.executable, signup_path])
 
+        # 4. Close the sign in window after a brief delay
         Signin.after(1000, Signin.destroy)
 
     except Exception as e:
@@ -84,9 +65,11 @@ ibl2.pack()
 ent1 = Entry(Signin, width=30, relief="flat", show="*")
 ent1.pack()
 
+# Login Button
 btn = Button(Signin, text="Login", bg="#301934", fg="#B6D0E2", width=15, command=loading)
 btn.pack(pady=10)
 
+# --- SIGN UP BUTTON ---
 btn_signup = Button(Signin, text="Sign Up", bg="#ffaaff", fg="#000", width=15, command=open_sign_up)
 btn_signup.pack()
 
