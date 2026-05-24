@@ -16,8 +16,7 @@ def loading():
     Signin.withdraw()
 
     try:
-        # Open raphski.py directly
-        sd.Popen([sys.executable, "raphski.py"])
+        sd.Popen([sys.executable, "main.py"])
 
         # Close the sign in window fully after 3 seconds
         Signin.after(3000, Signin.destroy)

@@ -6,6 +6,7 @@ import datetime
 import os
 import subprocess as sd
 import sys  # Recommended for finding python executable
+import threading
 
 
 def process_input(user_text, source_type):
@@ -63,22 +64,26 @@ def process_input(user_text, source_type):
 
 
 def handle_voice_search():
-    """Handles the microphone input"""
     status_label.config(text="Listening...", fg="red")
     root.update()
 
+    threading.Thread(target=listen_thread).start()
+
+
+def listen_thread():
     user_question = ve.listen()
 
+    # Send result back to main thread safely
+    root.after(0, lambda: process_voice_result(user_question))
+
+
+def process_voice_result(user_question):
     status_label.config(text="Processing...", fg="orange")
-    root.update()
 
     if user_question:
-        # Send to the main processing function
         process_input(user_question, "Voice")
     else:
         status_label.config(text="Ready", fg="green")
-
-
 def handle_text_search():
     """Handles the typed input"""
     user_question = text_entry.get()
@@ -100,10 +105,10 @@ def log_out():
 
     try:
         # Using os.system as per your original code
-        os.system('python sign_in.py')
+       # os.system('python sign_in.py')
 
         # ALTERNATIVE (More Reliable):
-        # sd.Popen([sys.executable, "sign_in.py"])
+         sd.Popen([sys.executable, "sign_in.py"])
 
     except Exception as e:
         print(f"Error opening sign-in page: {e}")
