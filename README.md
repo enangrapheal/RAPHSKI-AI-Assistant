@@ -162,7 +162,7 @@ python setup_database.py
 ## 4. Launch RAPHSKI
 
 ```bash
-python sign_in.py
+python main.py
 ```
 
 ---
@@ -181,13 +181,17 @@ pyaudio
 
 # Screenshots
 
-Add screenshots here later:
+## Sign In Page
+![Sign In](assets/signin.png)
 
-* Login page
-* Sign up page
-* Main assistant interface
-* Voice interaction workflow
+## Sign Up Page
+![Sign Up](assets/signup.png)
 
+## Main Interface
+![Main Interface](assets/main_interface.png)
+
+## Voice Interaction
+![Voice Mode](assets/voice_mode.png)
 ---
 
 # Developer
