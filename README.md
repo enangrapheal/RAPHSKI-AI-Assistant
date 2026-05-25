@@ -55,15 +55,21 @@ Voice/Text Response
 # Project Structure
 
 ```text
-RAPHSKI/
+RAPHSKI-AI-Assistant/
+│
+├── assets/
+│   ├── signin.png
+│   ├── signup.png
+│   ├── main_interface.png
+│   └── voice_mode.png
 │
 ├── main.py
 ├── sign_in.py
 ├── sign_up.py
 ├── voice_engine.py
 ├── setup_database.py
-├── users.db
-└── README.md
+├── README.md
+└── requirements.txt
 ```
 
 ---
