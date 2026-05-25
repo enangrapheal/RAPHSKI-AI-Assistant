@@ -116,6 +116,7 @@ Built using Tkinter with:
 
 Planned upgrades include:
 
+* Upgraded GUI system
 * NLP intent classification
 * Conversational memory system
 * User personalization
